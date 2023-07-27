@@ -4,13 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import the.best.nettracker.dao.UserRepository;
 import the.best.nettracker.documents.User;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository usRepo;
@@ -28,12 +31,13 @@ public class UserService {
 		return foundUser;
 	}
 
-	public Optional<User> findByUserName(String username) {
-		Optional<User> foundUser = usRepo.findByUserName(username.toLowerCase());
+	public Optional<User> findByUsername(String username) {
+		Optional<User> foundUser = usRepo.findByUsername(username.toLowerCase());
 		return foundUser;
 	}
 
 	public boolean save(User user) {
+		user.setUsername(user.getUsername().toLowerCase());
 		Optional<User> findUser = usRepo.findById(user.getId());
 		if (findUser.isPresent()) {
 			return false;
@@ -61,6 +65,12 @@ public class UserService {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found by username"));
+	
 	}
 
 }
