@@ -35,12 +35,14 @@ public class AuthController {
 	public ResponseEntity<Map<Object, Object>> login(@RequestHeader(value = "Authorization") String req) throws Throwable {
 		String[] decoded = aServ.splitHeader(req);
 		String username = decoded[0];
+		System.out.println(username);
 		String password = decoded[1];
 		try {
 			User user = aServ.findUser(username);
 			try {
 				aServ.authenticate(username, password);
 			} catch (Exception e) {
+				e.printStackTrace();
 				return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 			}
 			Map<Object, Object> model = aServ.buildLoginReponse(user);

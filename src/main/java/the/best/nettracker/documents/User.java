@@ -23,7 +23,7 @@ public class User implements UserDetails {
 	@Id
 	private String id;
 	private String name;
-	private String userName;
+	private String username;
 	private String password;
 	private double taxRate;
 	private List<Job> jobs;
@@ -58,7 +58,7 @@ public class User implements UserDetails {
 	public User(String name, String username, String password, List<Job> jobs) {
 		super();
 		this.name = name;
-		this.userName = username;
+		this.username = username;
 		this.password = password;
 		this.jobs = jobs;
 		this.role = "USER";
@@ -67,7 +67,7 @@ public class User implements UserDetails {
 	public User(String userName, String password, List<Job> jobs) {
 		super();
 		this.name = userName;
-		this.userName = userName;
+		this.username = userName;
 		this.password = password;
 		this.jobs = jobs;
 		this.role = "USER";
@@ -76,7 +76,7 @@ public class User implements UserDetails {
 	public User(String userName, double taxRate, String password) {
 		super();
 		this.name = userName;
-		this.userName = userName;
+		this.username = userName;
 		this.taxRate = taxRate;
 		this.role = "USER";
 		this.password = password;
@@ -86,7 +86,7 @@ public class User implements UserDetails {
 		super();
 		this.role = "USER";
 		this.name = name;
-		this.userName = name;
+		this.username = name;
 		this.jobs = new ArrayList<>();
 	}
 
@@ -120,11 +120,11 @@ public class User implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return userName;
+		return username;
 	}
 
 	public void setUsername(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 
 	@Override
@@ -157,7 +157,7 @@ public class User implements UserDetails {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", userName=" + userName + ", password=" + password + ", taxRate="
+		return "User [id=" + id + ", name=" + name + ", userName=" + username + ", password=" + password + ", taxRate="
 				+ taxRate + ", jobs=" + jobs + "]";
 	}
 

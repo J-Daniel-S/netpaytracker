@@ -52,7 +52,6 @@ public class AuthService {
 	
 	public String[] splitHeader(String req) {
 		String credentials = req.substring(6);
-		System.out.println(credentials);
 		return credentials.split(":");
 	}
 	

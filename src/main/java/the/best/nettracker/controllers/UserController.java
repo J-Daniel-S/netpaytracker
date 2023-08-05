@@ -65,6 +65,7 @@ public class UserController {
 	}
 
 	@GetMapping
+	@ResponseBody
 	// Admin only
 	public List<User> getUsers() {
 		return usRepo.findAll();
