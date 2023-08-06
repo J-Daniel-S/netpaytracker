@@ -1,0 +1,26 @@
+version: "0.1"
+services:
+    netpaymongo:
+        image:  mongo:latest
+        mem_limit: 500m
+        container_name: netpaymongo
+        networks:
+            -  netpay-network
+        ports:
+            -  "27017:27017"
+    netpaytracker:
+        image: jsharper55/netpaytracker:0.1.2
+        mem_limit: 750m
+        container_name: netpayapi
+        ports:
+            -  "8080:8080"
+        networks:
+            -  netpay-network
+        depends_on:
+            -  netpaymongo
+        environment:
+            SPRING.DATA.MONGODB.HOST: netpaymongo
+            SPRING.DATA.MONGODB.DATABASE: netpaytracker
+            SPRING.DATA.MONGODB.PORT: 27017
+networks:
+    netpay-network:

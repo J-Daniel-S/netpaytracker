@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>the.best</groupId>
 	<artifactId>netpaytracker</artifactId>
-	<version>0.1.1</version>
+	<version>0.1.2</version>
 	<name>NetPayTracker</name>
 	<description>very secure tracker of net pay</description>
 	<properties>

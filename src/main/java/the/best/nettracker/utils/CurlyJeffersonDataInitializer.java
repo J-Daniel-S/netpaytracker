@@ -12,7 +12,7 @@ import the.best.nettracker.documents.User;
 import the.best.nettracker.services.UserService;
 
 @Component
-public class MongoDataInitializer implements CommandLineRunner {
+public class CurlyJeffersonDataInitializer implements CommandLineRunner {
 
 	@Autowired
 	private UserService usRepo;
@@ -28,9 +28,9 @@ public class MongoDataInitializer implements CommandLineRunner {
 		
 		if (user.isEmpty()) {
 			usRepo.save(curly);
-			System.out.println("User curly jefferson saved to MongoDB");
+			System.out.println("User curly jefferson saved to MongoDB.  Password is \"pass\"");
 		} else {
-			System.out.println("User curly jefferson already present in MongoDB");
+			System.out.println("User curly jefferson already present in MongoDB.  Password is \"pass\"");
 		}
 		
 		
