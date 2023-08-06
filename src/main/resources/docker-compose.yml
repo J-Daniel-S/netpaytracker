@@ -22,5 +22,15 @@ services:
             SPRING.DATA.MONGODB.HOST: netpaymongo
             SPRING.DATA.MONGODB.DATABASE: netpaytracker
             SPRING.DATA.MONGODB.PORT: 27017
+    wagetrackerui:
+        image:  jsharper55/wagetrackerui:0.1.1
+        mem_limit:  750m
+        container_name:  netpayui
+        ports:
+            -  "3000:3000"
+        networks:
+            -  netpay-network
+        depends_on:
+            -  netpaytracker
 networks:
     netpay-network:
